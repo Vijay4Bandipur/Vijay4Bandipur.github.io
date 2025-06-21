@@ -59,9 +59,9 @@ The website is fully responsive and works seamlessly across:
 ## 🎨 Design Features
 
 ### Color Scheme
-- Primary: #2c3e50 (Dark Blue)
-- Secondary: #3498db (Blue)
-- Accent: #e74c3c (Red)
+- Primary: #450102 (Deep Maroon)
+- Secondary: #5f1b19 (Dark Red)
+- Accent: #882522 (Burgundy)
 - Background: #f8f9fa (Light Gray)
 
 ### Typography

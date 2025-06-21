@@ -18,13 +18,13 @@ html {
 
 /* CSS Variables */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
+    --primary-color: #450102;
+    --secondary-color: #5f1b19;
+    --accent-color: #882522;
     --text-color: #333;
     --light-bg: #f8f9fa;
     --white: #ffffff;
-    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient: linear-gradient(135deg, #450102 0%, #5f1b19 50%, #882522 100%);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
     --transition: all 0.3s ease;
@@ -58,12 +58,22 @@ html {
 .nav-logo a {
     text-decoration: none;
     color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
 }
 
-.nav-logo h2 {
+.logo-image {
+    height: 90px;
+    width: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(69, 1, 2, 0.0);
+}
+
+.logo-text h2 {
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 0.2rem;
+    margin-bottom: -0.4rem;
 }
 
 .logo-subtitle {
@@ -142,28 +152,55 @@ html {
     animation: float 20s infinite linear;
 }
 
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: url('../assets/logo-white.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.12;
+    z-index: 0;
+    pointer-events: none;
+    animation: logoFloat 6s ease-in-out infinite;
+}
+
 @keyframes float {
     0% { transform: translateY(0) rotate(0deg); }
     100% { transform: translateY(-100px) rotate(360deg); }
 }
 
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.12;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 0.18;
+    }
+}
+
 .hero-content {
     max-width: 800px;
-    padding: 0 2rem;
-    z-index: 2;
+    padding: 2rem 2rem 0 2rem;
+    z-index: 10;
     position: relative;
 }
 
 .hero h1 {
     font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 0.2rem;
     animation: fadeInUp 1s ease;
 }
 
 .hero p {
     font-size: 1.3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.2rem;
     opacity: 0.9;
     animation: fadeInUp 1s ease 0.2s both;
 }
@@ -221,6 +258,122 @@ html {
 /* About Section */
 .about {
     background: var(--light-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 0%, rgba(69, 1, 2, 0.02) 50%, transparent 100%);
+    pointer-events: none;
+}
+
+.about-hero {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+}
+
+.about-hero-content {
+    position: relative;
+}
+
+.vision-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about-hero-content h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.about-hero-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+}
+
+.about-hero-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.about-visual {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-elements {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.float-item {
+    position: absolute;
+    background: var(--gradient);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow);
+    animation: floatUpDown 6s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+.float-item:nth-child(1) {
+    top: 10%;
+    left: 20%;
+    transform: rotate(-5deg);
+}
+
+.float-item:nth-child(2) {
+    top: 40%;
+    right: 10%;
+    transform: rotate(3deg);
+}
+
+.float-item:nth-child(3) {
+    bottom: 20%;
+    left: 30%;
+    transform: rotate(-3deg);
+}
+
+@keyframes floatUpDown {
+    0%, 100% {
+        transform: translateY(0) rotate(var(--rotation, 0deg));
+    }
+    50% {
+        transform: translateY(-20px) rotate(var(--rotation, 0deg));
+    }
 }
 
 .about-content {
@@ -302,6 +455,149 @@ html {
     line-height: 1.6;
 }
 
+/* Manifesto Section Styles */
+.manifesto {
+    background: linear-gradient(135deg, rgba(69, 1, 2, 0.05) 0%, rgba(95, 27, 25, 0.05) 100%);
+}
+
+.promises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.promise-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-left: 4px solid var(--secondary-color);
+}
+
+.promise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-left-color: var(--accent-color);
+}
+
+.promise-card h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.promise-card h3 .emoji {
+    font-size: 1.4rem;
+}
+
+.promise-card p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.manifesto-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.manifesto-intro h3 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.manifesto-intro p {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.manifesto-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Innovation Section Styles */
+.innovation {
+    background: linear-gradient(135deg, rgba(136, 37, 34, 0.05) 0%, rgba(69, 1, 2, 0.05) 100%);
+}
+
+.innovation-card {
+    border-left: 4px solid var(--accent-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.innovation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+    border-radius: 0 0 0 100%;
+    opacity: 0.1;
+    transition: var(--transition);
+}
+
+.innovation-card:hover::before {
+    opacity: 0.2;
+    transform: scale(1.2);
+}
+
+.innovation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(136, 37, 34, 0.15);
+    border-left-color: var(--primary-color);
+}
+
+.innovation-card h3 {
+    color: var(--accent-color);
+}
+
+.innovation-card h3 .emoji {
+    background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.5rem;
+}
+
 /* Footer Styles */
 .footer {
     background: var(--primary-color);
@@ -326,6 +622,21 @@ html {
 .footer-section h4 {
     margin-bottom: 1rem;
     color: var(--white);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo-image {
+    height: 90px;
+    width: auto;
+    border-radius: 8px;
+   
+    padding: 0.3rem;
 }
 
 .footer-section p {
@@ -401,6 +712,82 @@ html {
     }
 }
 
+/* Mission & Why Choose Sections - Clean and Minimalistic */
+.about-features {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 4rem;
+}
+
+.feature-section {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.feature-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature-number {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.feature-header h3 {
+    color: var(--text-dark);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.feature-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 1.2rem;
+}
+
+.feature-section p strong {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-features {
+        gap: 3rem;
+        margin-top: 3rem;
+    }
+    
+    .feature-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .feature-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .feature-section p {
+        font-size: 1rem;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
@@ -418,18 +805,46 @@ html {
 
     .nav-menu.active {
         left: 0;
-    }
-
-    .nav-toggle {
+    }    .nav-toggle {
         display: flex;
     }
 
-    .hero h1 {
+    .logo-image {
+        height: 35px;
+    }    .logo-text h2 {
+        font-size: 1.4rem;
+    }    .hero::after {
+        width: 400px;
+        height: 400px;
+        opacity: 0.10;
+        top: 65%;
+    }    .hero h1 {
         font-size: 2.5rem;
+    }    .hero-content {
+        padding: 3rem 2rem 0 2rem;
     }
 
-    .hero p {
+    .sanskrit-text {
+        font-size: 1.2rem;
+    }
+
+    .sanskrit-meaning {
+        font-size: 1rem;
+    }.hero p {
         font-size: 1.1rem;
+    }
+
+    .about-hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .about-visual {
+        height: 250px;
+    }    .float-item {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.5rem;
     }
 
     .about-content {
@@ -439,6 +854,18 @@ html {
 
     .members-grid {
         grid-template-columns: 1fr;
+    }    .promises-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .innovation-card::before {
+        width: 30px;
+        height: 30px;
+    }
+
+    .manifesto-stats {
+        gap: 2rem;
     }
 
     .footer-content {
@@ -459,4 +886,26 @@ html {
     .section-title {
         font-size: 2rem;
     }
+}
+
+/* Hero Subtitle Styles */
+.hero-subtitle {
+    margin-bottom: 2rem;
+}
+
+.sanskrit-text {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', serif;
+    letter-spacing: 0.5px;
+}
+
+.sanskrit-meaning {
+    font-size: 1.1rem;
+    font-style: italic;
+    opacity: 0.9;
+    margin-bottom: 0;
+    color: #fff;
 }
