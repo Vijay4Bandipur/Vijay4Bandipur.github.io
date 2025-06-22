@@ -27,8 +27,8 @@ vijay4bandipur/
 ├── members/                 # Individual member pages
 │   ├── candidate1.html     # Vijay Kumar (President)
 │   ├── candidate2.html     # Anjali Sharma (Vice President)
-│   ├── candidate3.html     # Rajesh Nair (Secretary)
-│   └── candidate4.html     # Priya Singh (Treasurer)
+│   ├── yuvraj-bhadauriya.html # Yuvraj Bhadauriya (Secretary)
+│   └── priya-singh.html    # Priya Singh (Web Admin)
 ├── assets/                  # Static assets (images, videos, etc.)
 └── README.md               # Project documentation
 ```
